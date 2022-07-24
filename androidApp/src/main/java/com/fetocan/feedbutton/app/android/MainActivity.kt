@@ -4,9 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.fetocan.feedbutton.app.user.UserService
 import android.widget.TextView
+import kotlinx.coroutines.withContext
 
-fun greet(): String {
-    return UserService().greeting()
+var token: String = ""
+
+suspend fun setToken() {
+    val user = UserService().login(
+        email = "some@email.com",
+        password = "password"
+    )
+    token = user.accessToken ?: ""
 }
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
+        tv.text = token
     }
 }
