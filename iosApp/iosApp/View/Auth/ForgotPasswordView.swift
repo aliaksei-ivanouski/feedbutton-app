@@ -28,6 +28,12 @@ struct ForgotPasswordView: View {
                     .foregroundColor(.white)
                     .frame(width: 320, height: 100)
                     .padding(.bottom, 25)
+                    .alert(isPresented: .constant(!viewModel.errorMessage.isEmpty)
+                    ) {
+                        Alert(title: Text("Error!"), message: Text(viewModel.errorMessage), dismissButton: .destructive(Text("Cancel"), action: {
+                            viewModel.errorMessage = ""
+                        }))
+                    }
                 
                 VStack(spacing: 20) {
                     CustomTextField(text: $email, placeholder: Text("email..."), imageName: "envelope")
@@ -35,7 +41,9 @@ struct ForgotPasswordView: View {
                         .background(Color(.init(white: 1, alpha: 0.15)))
                         .cornerRadius(10)
                         .foregroundColor(.white)
+                        .frame(width: 360, height: 50)
                         .padding(.horizontal, 32)
+                        .padding(.bottom, 7)
                 }
                 
                 Button(action: {

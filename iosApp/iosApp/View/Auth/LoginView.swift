@@ -27,7 +27,9 @@ struct LoginView: View {
                         .padding(.bottom, 25)
                         .alert(isPresented: .constant(!viewModel.errorMessage.isEmpty)
                         ) {
-                            Alert(title: Text("Error!"), message: Text(viewModel.errorMessage), dismissButton: .destructive(Text("Cancel")))
+                            Alert(title: Text("Error!"), message: Text(viewModel.errorMessage), dismissButton: .destructive(Text("Cancel"), action: {
+                                viewModel.errorMessage = ""
+                            }))
                         }
                     
                     VStack(spacing: 20) {
