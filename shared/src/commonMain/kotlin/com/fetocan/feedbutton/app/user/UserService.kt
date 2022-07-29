@@ -1,7 +1,7 @@
 package com.fetocan.feedbutton.app.user
 
 import com.fetocan.feedbutton.app.authentication.AuthenticationHttpClient
-import com.fetocan.feedbutton.app.user.User
+import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.cancellation.CancellationException
@@ -22,5 +22,19 @@ class UserService {
         val response = AuthenticationHttpClient.login(email, password)
 
         User(response)
+    }
+
+    @Throws(CancellationException::class, IllegalArgumentException::class)
+    suspend fun resetPassword(
+        email: String?
+    ) {
+        withContext(Dispatchers.Main) {
+            email?.takeIf {
+                it.isNotEmpty()
+            } ?: throw IllegalArgumentException("Email cannot be empty")
+            AuthenticationHttpClient.resetPassword(email)
+                .takeIf { it == HttpStatusCode.OK }
+                ?: throw IllegalArgumentException("Error occurred during reset password")
+        }
     }
 }

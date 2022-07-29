@@ -53,6 +53,29 @@ object AuthenticationHttpClient {
         json.decodeFromString(response.bodyAsText())
     }
 
+    @Throws(CancellationException::class, IllegalArgumentException::class)
+    suspend fun resetPassword(
+        email: String
+    ): HttpStatusCode = withContext(Dispatchers.Main) {
+        val response = client.post {
+            url("$BACKEND_HOST/api/v1/managers/forgot-password")
+            contentType(ContentType.Application.Json)
+            setBody(
+                """
+                {
+                    "email": "$email"
+                }
+            """.trimIndent()
+            )
+        }
+        if (response.status.value > 200) {
+            throw IllegalArgumentException(
+                "Reset password failure. Please check your email."
+            )
+        }
+        response.status
+    }
+
     @Serializable
     data class ManagerAuthResponse(
         val manager: Manager,

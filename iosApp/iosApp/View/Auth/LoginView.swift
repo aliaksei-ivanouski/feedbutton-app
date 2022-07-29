@@ -52,15 +52,15 @@ struct LoginView: View {
                         Spacer()
                         
                         NavigationLink {
-                            ForgotPasswordView()
+                            ForgotPasswordView(email: $email)
                         } label: {
                             Text("Forgot password?")
                                 .font(.system(size: 13, weight: .semibold))
                                 .foregroundColor(.white)
                                 .padding(.top)
-                                .padding(.trailing, 28)
                         }
                     }
+                    .frame(width: 340, height: 30)
                     
                     Button(action: {
                         viewModel.login(withEmail: email, password: password)
@@ -99,11 +99,5 @@ struct LoginView: View {
     
     var credentialsEmpty: Bool {
         return email.isEmpty || password.isEmpty
-    }
-}
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
     }
 }

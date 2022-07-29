@@ -12,6 +12,7 @@ import shared
 class AuthViewModel: ObservableObject {
     @Published var userSession: User?
     @Published var errorMessage: String = ""
+    @Published var didSendResetPasswordLink = false
     let userService = UserService()
     
     static let shared = AuthViewModel()
@@ -27,9 +28,19 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    func resetPassword(withEmail email: String) {
+        userService.resetPassword(email: email) { result, error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            self.didSendResetPasswordLink = true
+        }
+    }
+    
     func logout() {
         self.userSession = nil
-//        try? call_logout_from_kotlin
     }
     
 }
