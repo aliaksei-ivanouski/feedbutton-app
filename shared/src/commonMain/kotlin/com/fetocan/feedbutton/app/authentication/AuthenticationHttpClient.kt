@@ -54,7 +54,7 @@ object AuthenticationHttpClient {
     }
 
     @Throws(CancellationException::class, IllegalArgumentException::class)
-    suspend fun resetPassword(
+    suspend fun forgotPassword(
         email: String
     ): HttpStatusCode = withContext(Dispatchers.Main) {
         val response = client.post {
@@ -70,7 +70,32 @@ object AuthenticationHttpClient {
         }
         if (response.status.value > 200) {
             throw IllegalArgumentException(
-                "Reset password failure. Please check your email."
+                "Please check your email."
+            )
+        }
+        response.status
+    }
+
+    @Throws(CancellationException::class, IllegalArgumentException::class)
+    suspend fun resetPassword(
+        token: String,
+        newPassword: String
+    ): HttpStatusCode = withContext(Dispatchers.Main) {
+        val response = client.post {
+            url("$BACKEND_HOST/api/v1/managers/reset-password")
+            contentType(ContentType.Application.Json)
+            setBody(
+                """
+                {
+                    "token": "$token",
+                    "newPassword": "$newPassword"
+                }
+            """.trimIndent()
+            )
+        }
+        if (response.status.value > 200) {
+            throw IllegalArgumentException(
+                "Token is expired. Please reset password one more time."
             )
         }
         response.status

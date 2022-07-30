@@ -47,7 +47,7 @@ struct ForgotPasswordView: View {
                 }
                 
                 Button(action: {
-                    viewModel.resetPassword(withEmail: email)
+                    viewModel.forgotPassword(withEmail: email)
                 }, label: {
                     Text(" Reset password ")
                         .font(.headline)
@@ -69,7 +69,7 @@ struct ForgotPasswordView: View {
                         action: {
                             mode.wrappedValue.dismiss()
                         }, label: {
-                            Text("Sign In")
+                            Text("Log In")
                                 .font(.system(size: 14, weight: .semibold))
                         })
                 }
@@ -78,7 +78,7 @@ struct ForgotPasswordView: View {
             }
             .padding(.top, -44)
         }
-        .onReceive(viewModel.$didSendResetPasswordLink, perform: { _ in
+        .onReceive(viewModel.$didSendForgotPasswordLink, perform: { _ in
             self.mode.wrappedValue.dismiss()
         })
     }

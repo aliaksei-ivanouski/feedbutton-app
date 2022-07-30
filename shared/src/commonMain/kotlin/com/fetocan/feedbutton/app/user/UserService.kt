@@ -25,16 +25,38 @@ class UserService {
     }
 
     @Throws(CancellationException::class, IllegalArgumentException::class)
-    suspend fun resetPassword(
+    suspend fun forgotPassword(
         email: String?
     ) {
         withContext(Dispatchers.Main) {
             email?.takeIf {
                 it.isNotEmpty()
             } ?: throw IllegalArgumentException("Email cannot be empty")
-            AuthenticationHttpClient.resetPassword(email)
+            AuthenticationHttpClient.forgotPassword(email)
                 .takeIf { it == HttpStatusCode.OK }
                 ?: throw IllegalArgumentException("Error occurred during reset password")
+        }
+    }
+
+    @Throws(CancellationException::class, IllegalArgumentException::class)
+    suspend fun resetPassword(
+        token: String?,
+        newPassword1: String?,
+        newPassword2: String?
+    ) {
+        withContext(Dispatchers.Main) {
+            if (newPassword1 != newPassword2) {
+                throw IllegalArgumentException("Passwords are not equal.")
+            }
+            token?.takeIf {
+                it.isNotEmpty()
+            } ?: throw IllegalArgumentException("Token expired. Please go to 'forgot password?'")
+            newPassword2?.takeIf {
+                it.isNotEmpty()
+            } ?: throw IllegalArgumentException("Password cannot be empty")
+            AuthenticationHttpClient.resetPassword(token, newPassword2)
+                .takeIf { it == HttpStatusCode.OK }
+                ?: throw IllegalArgumentException("Token expired. Please go to 'forgot password?'")
         }
     }
 }

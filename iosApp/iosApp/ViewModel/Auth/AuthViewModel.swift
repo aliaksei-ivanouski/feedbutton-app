@@ -12,6 +12,7 @@ import shared
 class AuthViewModel: ObservableObject {
     @Published var userSession: User?
     @Published var errorMessage: String = ""
+    @Published var didSendForgotPasswordLink = false
     @Published var didSendResetPasswordLink = false
     let userService = UserService()
     
@@ -28,8 +29,19 @@ class AuthViewModel: ObservableObject {
         }
     }
     
-    func resetPassword(withEmail email: String) {
-        userService.resetPassword(email: email) { result, error in
+    func forgotPassword(withEmail email: String) {
+        userService.forgotPassword(email: email) { _, error in
+            if let error = error {
+                self.errorMessage = error.localizedDescription
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            self.didSendForgotPasswordLink = true
+        }
+    }
+    
+    func resetPassword(withToken token: String, withNewPassword1 password1: String, withNewPassword2 password2: String) {
+        userService.resetPassword(token: token, newPassword1: password1, newPassword2: password2) { _, error in
             if let error = error {
                 self.errorMessage = error.localizedDescription
                 print("Error: \(error.localizedDescription)")
