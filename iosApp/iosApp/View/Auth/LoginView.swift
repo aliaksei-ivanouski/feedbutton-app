@@ -11,6 +11,7 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var eyeOpened = false
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
@@ -20,7 +21,7 @@ struct LoginView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    Text(" feed button ")
+                    Text(" login ")
                         .font(.custom("KaushanScript-Regular", size: 40))
                         .foregroundColor(.white)
                         .frame(width: 320, height: 100)
@@ -41,7 +42,7 @@ struct LoginView: View {
                             .frame(width: 340, height: 50)
                             .padding(.horizontal, 32)
                         
-                        CustomSecureField(text: $password, placeholder: Text("password..."))
+                        CustomSecureField(eyeOpened: $eyeOpened, text: $password, placeholder: Text("password..."))
                             .padding()
                             .background(Color(.init(white: 1, alpha: 0.15)))
                             .cornerRadius(10)

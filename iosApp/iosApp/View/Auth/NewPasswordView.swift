@@ -15,6 +15,7 @@ struct NewPasswordView: View {
     @State private var newPassword1 = ""
     @State private var newPassword2 = ""
     @State private var showAlert = false
+    @State private var eyeOpened = false
     
     init(token: Binding<String>) {
         self._token = token
@@ -38,7 +39,7 @@ struct NewPasswordView: View {
                     }
                 
                 VStack(spacing: 20) {
-                    CustomSecureField(text: $newPassword1, placeholder: Text("new password..."))
+                    CustomSecureField(eyeOpened: $eyeOpened, text: $newPassword1, placeholder: Text("new password..."))
                         .padding()
                         .background(Color(.init(white: 1, alpha: 0.15)))
                         .cornerRadius(10)
@@ -46,7 +47,7 @@ struct NewPasswordView: View {
                         .frame(width: 340, height: 50)
                         .padding(.horizontal, 32)
                     
-                    CustomSecureField(text: $newPassword2, placeholder: Text("confirm new password..."))
+                    CustomSecureField(eyeOpened: $eyeOpened, text: $newPassword2, placeholder: Text("confirm new password..."))
                         .padding()
                         .background(Color(.init(white: 1, alpha: 0.15)))
                         .cornerRadius(10)

@@ -11,6 +11,13 @@ import SwiftUI
 struct CustomSecureField: View {
     @Binding var text: String
     let placeholder: Text
+    @Binding private var eyeOpened: Bool
+    
+    init(eyeOpened: Binding<Bool>, text: Binding<String>, placeholder: Text) {
+        self._eyeOpened = eyeOpened
+        self.placeholder = placeholder
+        self._text = text
+    }
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -27,14 +34,24 @@ struct CustomSecureField: View {
                     .frame(width: 20, height: 20)
                     .foregroundColor(.white)
                 
-                SecureField("", text: $text)
+                if eyeOpened {
+                    TextField("", text: $text)
+                } else {
+                    SecureField("", text: $text)
+                }
+                
+                Spacer()
+                
+                Button(action: {
+                    eyeOpened.toggle()
+                }, label: {
+                    Image(systemName: eyeOpened ? "eye" : "eye.slash")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.white)
+                })
             }
         }
-    }
-}
-
-struct CustomSecureField_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomSecureField(text: .constant(""), placeholder: Text("password..."))
     }
 }

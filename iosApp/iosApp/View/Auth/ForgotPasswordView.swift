@@ -23,7 +23,7 @@ struct ForgotPasswordView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text(" feed button ")
+                Text(" reset password ")
                     .font(.custom("KaushanScript-Regular", size: 40))
                     .foregroundColor(.white)
                     .frame(width: 320, height: 100)
