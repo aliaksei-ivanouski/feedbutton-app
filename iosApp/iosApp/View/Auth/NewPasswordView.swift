@@ -98,9 +98,6 @@ struct NewPasswordView: View {
             }
             .padding(.top, 44)
         }
-        .onReceive(viewModel.$didSendResetPasswordLink, perform: { _ in
-            self.mode.wrappedValue.dismiss()
-        })
     }
     
     var passwordEmpty: Bool {

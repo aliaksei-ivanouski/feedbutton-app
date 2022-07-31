@@ -3,8 +3,8 @@ import SwiftUI
 @main
 struct FeedbuttonApp: App {
 	var body: some Scene {
-		WindowGroup {
-			ContentView()
+        WindowGroup {
+            ContentView()
                 .environmentObject(AuthViewModel.shared)
 		}
 	}
