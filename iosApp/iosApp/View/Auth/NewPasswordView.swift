@@ -79,8 +79,8 @@ struct NewPasswordView: View {
                         LoginView().navigationBarHidden(true)
                     }, label: {
                         Text("Log In")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.white)
+                            .font(.system(size: 14, weight: .semibold))
+                            .underline()
                     })
                 }
                 .foregroundColor(.white)

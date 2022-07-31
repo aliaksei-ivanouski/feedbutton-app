@@ -90,6 +90,7 @@ struct LoginView: View {
                             label: {
                                 Text("Sign Up")
                                     .font(.system(size: 14, weight: .semibold))
+                                    .underline()
                             })
                     }
                     .foregroundColor(.white)

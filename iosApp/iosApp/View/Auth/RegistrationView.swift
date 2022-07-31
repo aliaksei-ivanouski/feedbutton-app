@@ -30,6 +30,7 @@ struct RegistrationView: View {
                         }, label: {
                             Text("Sign In")
                                 .font(.system(size: 14, weight: .semibold))
+                                .underline()
                         })
                 }
                 .foregroundColor(.white)

@@ -62,7 +62,7 @@ struct ForgotPasswordView: View {
                 Spacer()
                 
                 HStack {
-                    Text("Already have an accont?")
+                    Text("I remember my password.")
                         .font(.system(size: 14))
                     
                     Button(
@@ -71,6 +71,7 @@ struct ForgotPasswordView: View {
                         }, label: {
                             Text("Log In")
                                 .font(.system(size: 14, weight: .semibold))
+                                .underline()
                         })
                 }
                 .foregroundColor(.white)
