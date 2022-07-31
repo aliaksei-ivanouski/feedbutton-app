@@ -7,19 +7,15 @@ struct ContentView: View {
 
 	var body: some View {
         Group {
-            if viewModel.userSession == nil {
-                LoginView()
-            } else {
+            if viewModel.userSession != nil {
                 if let user = viewModel.userSession {
                     MainTabView(user: user, selectedIndex: $selectedIndex)
                 }
+            } else if viewModel.toLogin {
+                LoginView()
+            } else {
+                FeedsButtonView()
             }
         }
-	}
-}
-
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
 	}
 }

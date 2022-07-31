@@ -17,13 +17,15 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+                Rectangle()
+                    .fill(Color("Background"))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea(.all)
                 
                 VStack {
                     Text(" login ")
                         .font(.custom("KaushanScript-Regular", size: 40))
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .frame(width: 320, height: 100)
                         .padding(.bottom, 25)
                         .alert(isPresented: .constant(!viewModel.errorMessage.isEmpty)
@@ -36,30 +38,48 @@ struct LoginView: View {
                     VStack(spacing: 20) {
                         CustomTextField(text: $email, placeholder: Text("email..."), imageName: "envelope")
                             .padding()
-                            .background(Color(.init(white: 1, alpha: 0.15)))
+                            .background(Color(.init(white: 1, alpha: 0.5)))
                             .cornerRadius(10)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.gray, lineWidth: 0.5)
+                                )
                             .frame(width: 340, height: 50)
                             .padding(.horizontal, 32)
                         
                         CustomSecureField(eyeOpened: $eyeOpened, text: $password, placeholder: Text("password..."))
                             .padding()
-                            .background(Color(.init(white: 1, alpha: 0.15)))
+                            .background(Color(.init(white: 1, alpha: 0.5)))
                             .cornerRadius(10)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.gray, lineWidth: 0.5)
+                                )
                             .frame(width: 340, height: 50)
                             .padding(.horizontal, 32)
                     }
                     
                     HStack {
+                        Button(action: {
+                            viewModel.toLogin = false
+                        }, label: {
+                            Text("To button")
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(.black)
+                                .padding(.top)
+                        })
+                        
                         Spacer()
                         
                         NavigationLink {
                             ForgotPasswordView(email: $email)
+                                .navigationBarHidden(true)
                         } label: {
                             Text("Forgot password?")
                                 .font(.system(size: 13, weight: .semibold))
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .padding(.top)
                         }
                     }
@@ -68,13 +88,12 @@ struct LoginView: View {
                     Button(action: {
                         viewModel.login(withEmail: email, password: password)
                     }, label: {
-                        Text("Login")
+                        CustomButton(width: 340, height: 50,
+                                     view: Text(" login ")
                             .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(width: 340, height: 50)
-                            .background(credentialsEmpty ? .purple.opacity(0.2) : .purple)
-                            .clipShape(Capsule())
-                            .padding()
+                            .foregroundColor(credentialsEmpty ? .gray : .black)
+                        )
+                        .padding()
                     })
                     .disabled(credentialsEmpty)
                     
@@ -93,7 +112,7 @@ struct LoginView: View {
                                     .underline()
                             })
                     }
-                    .foregroundColor(.white)
+                    .foregroundColor(.gray)
                     .padding(.bottom, 16)
                 }
                 .padding(.top, -44)

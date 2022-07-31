@@ -13,8 +13,10 @@ struct RegistrationView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+            Rectangle()
+                .fill(Color("Background"))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea(.all)
             
             VStack {
                 
@@ -28,12 +30,12 @@ struct RegistrationView: View {
                         action: {
                             mode.wrappedValue.dismiss()
                         }, label: {
-                            Text("Sign In")
+                            Text("Log In")
                                 .font(.system(size: 14, weight: .semibold))
                                 .underline()
                         })
                 }
-                .foregroundColor(.white)
+                .foregroundColor(.gray)
                 .padding(.bottom, 16)
             }
             .padding(.top, -44)

@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:fetocan.com</string>
+		<string>applinks:app.feedsbutton.com</string>
 	</array>
 </dict>
 </plist>

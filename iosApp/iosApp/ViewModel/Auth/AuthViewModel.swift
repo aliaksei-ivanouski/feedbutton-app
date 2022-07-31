@@ -12,6 +12,7 @@ import shared
 class AuthViewModel: ObservableObject {
     @Published var userSession: User?
     @Published var errorMessage: String = ""
+    @Published var toLogin = false
     @Published var didSendForgotPasswordLink = false
     @Published var didSendResetPasswordLink = false
     let userService = UserService()

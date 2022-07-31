@@ -17,6 +17,7 @@
 		9C51183A288C931900024F57 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C511839288C931900024F57 /* NotificationsView.swift */; };
 		9C51183E2894EC8A00024F57 /* NewPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C51183D2894EC8900024F57 /* NewPasswordView.swift */; };
 		9C5118402896907C00024F57 /* FeedsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C51183F2896907C00024F57 /* FeedsButtonView.swift */; };
+		9C5118422896992500024F57 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5118412896992500024F57 /* CustomButton.swift */; };
 		9C51D536287C071200D9AD5B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C51D535287C071100D9AD5B /* LoginView.swift */; };
 		9C51D538287C073200D9AD5B /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C51D537287C073200D9AD5B /* RegistrationView.swift */; };
 		9C51D53A287C074600D9AD5B /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C51D539287C074600D9AD5B /* ForgotPasswordView.swift */; };
@@ -55,6 +56,7 @@
 		9C51183B288D95C800024F57 /* iosApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iosApp.entitlements; sourceTree = "<group>"; };
 		9C51183D2894EC8900024F57 /* NewPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordView.swift; sourceTree = "<group>"; };
 		9C51183F2896907C00024F57 /* FeedsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsButtonView.swift; sourceTree = "<group>"; };
+		9C5118412896992500024F57 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		9C51D535287C071100D9AD5B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9C51D537287C073200D9AD5B /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		9C51D539287C074600D9AD5B /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				9C51D542287CA36A00D9AD5B /* CustomTextField.swift */,
 				9C51D544287CA5A900D9AD5B /* CustomSecureField.swift */,
+				9C5118412896992500024F57 /* CustomButton.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				9C51183E2894EC8A00024F57 /* NewPasswordView.swift in Sources */,
 				9C51D53A287C074600D9AD5B /* ForgotPasswordView.swift in Sources */,
 				9C51183A288C931900024F57 /* NotificationsView.swift in Sources */,
+				9C5118422896992500024F57 /* CustomButton.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				9C511838288C928C00024F57 /* ProfileView.swift in Sources */,
 				9C5118402896907C00024F57 /* FeedsButtonView.swift in Sources */,

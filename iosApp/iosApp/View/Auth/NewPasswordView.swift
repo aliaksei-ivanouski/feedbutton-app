@@ -23,13 +23,15 @@ struct NewPasswordView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+            Rectangle()
+                .fill(Color("Background"))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea(.all)
             
             VStack {
                 Text(" new password ")
                     .font(.custom("KaushanScript-Regular", size: 40))
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .frame(width: 320, height: 100)
                     .padding(.bottom, 25)
                     .alert(isPresented: .constant(!viewModel.errorMessage.isEmpty)) {
@@ -41,17 +43,25 @@ struct NewPasswordView: View {
                 VStack(spacing: 20) {
                     CustomSecureField(eyeOpened: $eyeOpened, text: $newPassword1, placeholder: Text("new password..."))
                         .padding()
-                        .background(Color(.init(white: 1, alpha: 0.15)))
+                        .background(Color(.init(white: 1, alpha: 0.5)))
                         .cornerRadius(10)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.gray, lineWidth: 0.5)
+                            )
                         .frame(width: 340, height: 50)
                         .padding(.horizontal, 32)
                     
                     CustomSecureField(eyeOpened: $eyeOpened, text: $newPassword2, placeholder: Text("confirm new password..."))
                         .padding()
-                        .background(Color(.init(white: 1, alpha: 0.15)))
+                        .background(Color(.init(white: 1, alpha: 0.5)))
                         .cornerRadius(10)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.gray, lineWidth: 0.5)
+                            )
                         .frame(width: 340, height: 50)
                         .padding(.horizontal, 32)
                 }
@@ -59,13 +69,12 @@ struct NewPasswordView: View {
                 Button(action: {
                     viewModel.resetPassword(withToken: token, withNewPassword1: newPassword1, withNewPassword2: newPassword2)
                 }, label: {
-                    Text(" Confirm ")
+                    CustomButton(width: 340, height: 50,
+                                 view: Text(" Confirm ")
                         .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 340, height: 50)
-                        .background(passwordEmpty ? .purple.opacity(0.2) : .purple)
-                        .clipShape(Capsule())
-                        .padding()
+                        .foregroundColor(passwordEmpty ? .gray : .black)
+                    )
+                    .padding()
                 })
                 .disabled(passwordEmpty)
                 
@@ -75,15 +84,16 @@ struct NewPasswordView: View {
                     Text("I remember my password.")
                         .font(.system(size: 14))
                     
-                    NavigationLink(destination: {
-                        LoginView().navigationBarHidden(true)
-                    }, label: {
-                        Text("Log In")
-                            .font(.system(size: 14, weight: .semibold))
-                            .underline()
-                    })
+                    Button(
+                        action: {
+                            viewModel.toLogin = true
+                        }, label: {
+                            Text("Log In")
+                                .font(.system(size: 14, weight: .semibold))
+                                .underline()
+                        })
                 }
-                .foregroundColor(.white)
+                .foregroundColor(.gray)
                 .padding(.bottom, 16)
             }
             .padding(.top, 44)

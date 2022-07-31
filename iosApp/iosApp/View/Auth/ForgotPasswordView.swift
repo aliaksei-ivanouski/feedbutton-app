@@ -19,13 +19,15 @@ struct ForgotPasswordView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+            Rectangle()
+                .fill(Color("Background"))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea(.all)
             
             VStack {
                 Text(" reset password ")
                     .font(.custom("KaushanScript-Regular", size: 40))
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .frame(width: 320, height: 100)
                     .padding(.bottom, 25)
                     .alert(isPresented: .constant(!viewModel.errorMessage.isEmpty)
@@ -38,24 +40,26 @@ struct ForgotPasswordView: View {
                 VStack(spacing: 20) {
                     CustomTextField(text: $email, placeholder: Text("email..."), imageName: "envelope")
                         .padding()
-                        .background(Color(.init(white: 1, alpha: 0.15)))
+                        .background(Color(.init(white: 1, alpha: 0.5)))
                         .cornerRadius(10)
-                        .foregroundColor(.white)
-                        .frame(width: 360, height: 50)
-                        .padding(.horizontal, 32)
+                        .foregroundColor(.black)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(.gray, lineWidth: 0.5)
+                            )
+                        .frame(width: 340, height: 50)
                         .padding(.bottom, 7)
                 }
                 
                 Button(action: {
                     viewModel.forgotPassword(withEmail: email)
                 }, label: {
-                    Text(" Reset password ")
+                    CustomButton(width: 340, height: 50,
+                                 view: Text(" Reset password ")
                         .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 360, height: 50)
-                        .background(emailEmpty ? .purple.opacity(0.2) : .purple)
-                        .clipShape(Capsule())
-                        .padding()
+                        .foregroundColor(emailEmpty ? .gray : .black)
+                    )
+                    .padding()
                 })
                 .disabled(emailEmpty)
                 
@@ -74,10 +78,10 @@ struct ForgotPasswordView: View {
                                 .underline()
                         })
                 }
-                .foregroundColor(.white)
+                .foregroundColor(.gray)
                 .padding(.bottom, 16)
             }
-            .padding(.top, -44)
+            .padding(.top, 44)
         }
         .onReceive(viewModel.$didSendForgotPasswordLink, perform: { _ in
             self.mode.wrappedValue.dismiss()
