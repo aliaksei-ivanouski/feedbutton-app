@@ -10,6 +10,9 @@ import SwiftUI
 
 struct FeedsButtonView: View {
     @EnvironmentObject var viewModel: AuthViewModel
+    @State var postImage: Image?
+    @State private var selectedImage: UIImage?
+    @State var imagePickerPresented = false
     
     var body: some View {
         ZStack {
@@ -26,7 +29,7 @@ struct FeedsButtonView: View {
                     .padding(.bottom, 25)
                 
                 Button(action: {
-                    print("DEBUG: open camera")
+                    imagePickerPresented.toggle()
                 }, label: {
                     CustomButton(width: 340, height: 340,
                                view: Text(" feed button ")
@@ -35,6 +38,9 @@ struct FeedsButtonView: View {
                     )
                 })
                 .padding(.bottom, 44)
+                .sheet(isPresented: $imagePickerPresented, onDismiss: loadImage, content: {
+                    ImagePicker(image: $selectedImage, sourceType: .camera)
+                })
                 
                 Spacer()
                 
@@ -59,8 +65,9 @@ struct FeedsButtonView: View {
     }
 }
 
-struct FeedsButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedsButtonView()
+extension FeedsButtonView {
+    func loadImage() {
+        guard let selectedImage = selectedImage else { return }
+        postImage = Image(uiImage: selectedImage)
     }
 }
