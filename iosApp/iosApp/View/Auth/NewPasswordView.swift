@@ -69,11 +69,10 @@ struct NewPasswordView: View {
                 Button(action: {
                     viewModel.resetPassword(withToken: token, withNewPassword1: newPassword1, withNewPassword2: newPassword2)
                 }, label: {
-                    CustomButton(width: 340, height: 50,
-                                 view: Text(" Confirm ")
-                        .font(.headline)
-                        .foregroundColor(passwordEmpty ? .gray : .black)
-                    )
+                    CustomButton(title: " Confirm ",
+                                 width: 340, height: 50,
+                                 font: .headline,
+                                 color: passwordEmpty ? .gray : .black)
                     .padding()
                 })
                 .disabled(passwordEmpty)

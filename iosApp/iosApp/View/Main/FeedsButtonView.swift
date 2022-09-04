@@ -7,12 +7,11 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct FeedsButtonView: View {
     @EnvironmentObject var viewModel: AuthViewModel
-    @State var postImage: Image?
-    @State private var selectedImage: UIImage?
-    @State var imagePickerPresented = false
+    @State var isShowingScanner = false
     
     var body: some View {
         ZStack {
@@ -22,25 +21,24 @@ struct FeedsButtonView: View {
                 .ignoresSafeArea(.all)
             
             VStack {
-                Text(" welcome to ")
+                Text(" feed button ")
                     .font(.custom("KaushanScript-Regular", size: 50))
                     .foregroundColor(.black)
                     .frame(width: 320, height: 100)
                     .padding(.bottom, 25)
                 
                 Button(action: {
-                    imagePickerPresented.toggle()
+                    self.isShowingScanner = true
                 }, label: {
-                    CustomButton(width: 340, height: 340,
-                               view: Text(" feed button ")
-                        .font(.custom("KaushanScript-Regular", size: 40))
-                        .foregroundColor(.black)
-                    )
+                    CustomButton(title: " Scan QR-code ", systemImage: "qrcode.viewfinder",
+                                 width: 340, height: 340,
+                                 font: .custom("KaushanScript-Regular", size: 40),
+                                 color: .black)
                 })
                 .padding(.bottom, 44)
-                .sheet(isPresented: $imagePickerPresented, onDismiss: loadImage, content: {
-                    ImagePicker(image: $selectedImage, sourceType: .camera)
-                })
+                .sheet(isPresented: $isShowingScanner) {
+                    CodeScannerView(codeTypes: [.qr], simulatedData: "Test Data", completion: handleQRCode)
+                }
                 
                 Spacer()
                 
@@ -50,7 +48,7 @@ struct FeedsButtonView: View {
                     
                     Button(
                         action: {
-                            viewModel.toLogin = true
+                            viewModel.toLogin.toggle()
                         }, label: {
                             Text("Log In")
                                 .font(.system(size: 14, weight: .semibold))
@@ -66,8 +64,15 @@ struct FeedsButtonView: View {
 }
 
 extension FeedsButtonView {
-    func loadImage() {
-        guard let selectedImage = selectedImage else { return }
-        postImage = Image(uiImage: selectedImage)
+    func handleQRCode(result: Result<ScanResult, ScanError>) {
+        self.isShowingScanner = false
+        
+        switch result {
+        case .success(let result):
+            print("Scan result: \(result.string)")
+            
+        case .failure(let error):
+            print("Scanning failed: \(error.localizedDescription)")
+        }
     }
 }

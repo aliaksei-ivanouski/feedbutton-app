@@ -49,7 +49,7 @@ class AuthViewModel: ObservableObject {
                 return
             }
             self.didSendResetPasswordLink = true
-            self.toLogin = true
+            self.toLogin.toggle()
         }
     }
     

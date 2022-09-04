@@ -9,8 +9,24 @@
 import SwiftUI
 
 struct FeedView: View {
+    @ObservedObject var viewModel = FeedViewModel()
+    
     var body: some View {
-        Text("Feed")
+        ZStack {
+            Rectangle()
+                .fill(Color("Background"))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea(.all)
+            
+            ScrollView(.vertical) {
+                LazyVStack(spacing: 32) {
+                    ForEach(viewModel.posts, id: \.self) { post in
+                        FeedCell(viewModel: FeedCellViewModel(post: post))
+                    }
+                }
+                .padding(.top)
+            }
+        }
     }
 }
 

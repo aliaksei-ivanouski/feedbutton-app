@@ -10,14 +10,15 @@ struct ContentView: View {
         Group {
             if (queryParams["action"] ?? "") == "RESET_PASSWORD" {
                 NewPasswordView(token: .constant(queryParams["token"] ?? ""))
-            } else if viewModel.userSession != nil {
+            }
+            if viewModel.userSession != nil {
                 if let user = viewModel.userSession {
                     MainTabView(user: user, selectedIndex: $selectedIndex)
                 }
             } else if viewModel.toLogin {
                 LoginView()
             } else {
-                FeedsButtonView()
+                MainView()
             }
         }
         .onReceive(viewModel.$toLogin, perform: { _ in

@@ -54,11 +54,10 @@ struct ForgotPasswordView: View {
                 Button(action: {
                     viewModel.forgotPassword(withEmail: email)
                 }, label: {
-                    CustomButton(width: 340, height: 50,
-                                 view: Text(" Reset password ")
-                        .font(.headline)
-                        .foregroundColor(emailEmpty ? .gray : .black)
-                    )
+                    CustomButton(title: " Reset password ",
+                                 width: 340, height: 50,
+                                 font: .headline,
+                                 color: emailEmpty ? .gray : .black)
                     .padding()
                 })
                 .disabled(emailEmpty)

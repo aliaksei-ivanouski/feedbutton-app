@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,13 @@
 		9C51D54A287F162E00D9AD5B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C51D549287F162E00D9AD5B /* AuthViewModel.swift */; };
 		9C51D54D287F5CBA00D9AD5B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C51D54C287F5CBA00D9AD5B /* MainTabView.swift */; };
 		9C51D5502881E87200D9AD5B /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C51D54F2881E87200D9AD5B /* FeedView.swift */; };
+		9C6A2A0E28B88560002B8D8E /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6A2A0D28B88560002B8D8E /* CodeScanner */; };
+		9C6A2A1028B8D2A8002B8D8E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A2A0F28B8D2A8002B8D8E /* MainView.swift */; };
+		9C6A2A1228B8D39A002B8D8E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A2A1128B8D39A002B8D8E /* FeedCell.swift */; };
+		9C6A2A1528B8D3B8002B8D8E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9C6A2A1428B8D3B8002B8D8E /* Kingfisher */; };
+		9C6A2A1828B8D3FA002B8D8E /* FeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A2A1728B8D3FA002B8D8E /* FeedCellViewModel.swift */; };
+		9C6A2A1A28B8D486002B8D8E /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A2A1928B8D486002B8D8E /* FeedViewModel.swift */; };
+		9C6A2A1C28B9031A002B8D8E /* DraggableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A2A1B28B9031A002B8D8E /* DraggableModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +75,11 @@
 		9C51D549287F162E00D9AD5B /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		9C51D54C287F5CBA00D9AD5B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		9C51D54F2881E87200D9AD5B /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		9C6A2A0F28B8D2A8002B8D8E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9C6A2A1128B8D39A002B8D8E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		9C6A2A1728B8D3FA002B8D8E /* FeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModel.swift; sourceTree = "<group>"; };
+		9C6A2A1928B8D486002B8D8E /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		9C6A2A1B28B9031A002B8D8E /* DraggableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C6A2A1528B8D3B8002B8D8E /* Kingfisher in Frameworks */,
+				9C6A2A0E28B88560002B8D8E /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +215,7 @@
 				9C51D544287CA5A900D9AD5B /* CustomSecureField.swift */,
 				9C5118412896992500024F57 /* CustomButton.swift */,
 				9C5118472896EEFF00024F57 /* ImagePicker.swift */,
+				9C6A2A1B28B9031A002B8D8E /* DraggableModifier.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -208,6 +223,7 @@
 		9C51D547287F15F600D9AD5B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9C6A2A1628B8D3E9002B8D8E /* Feed */,
 				9C51D548287F160500D9AD5B /* Auth */,
 			);
 			path = ViewModel;
@@ -227,6 +243,7 @@
 				7555FF82242A565900829871 /* ContentView.swift */,
 				9C51D54C287F5CBA00D9AD5B /* MainTabView.swift */,
 				9C51183F2896907C00024F57 /* FeedsButtonView.swift */,
+				9C6A2A0F28B8D2A8002B8D8E /* MainView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -235,6 +252,16 @@
 			isa = PBXGroup;
 			children = (
 				9C51D54F2881E87200D9AD5B /* FeedView.swift */,
+				9C6A2A1128B8D39A002B8D8E /* FeedCell.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		9C6A2A1628B8D3E9002B8D8E /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				9C6A2A1728B8D3FA002B8D8E /* FeedCellViewModel.swift */,
+				9C6A2A1928B8D486002B8D8E /* FeedViewModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -257,6 +284,10 @@
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+				9C6A2A0D28B88560002B8D8E /* CodeScanner */,
+				9C6A2A1428B8D3B8002B8D8E /* Kingfisher */,
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
@@ -285,6 +316,10 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				9C6A2A0C28B88560002B8D8E /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				9C6A2A1328B8D3B7002B8D8E /* XCRemoteSwiftPackageReference "KingFisher" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -333,18 +368,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C51D5502881E87200D9AD5B /* FeedView.swift in Sources */,
+				9C6A2A1228B8D39A002B8D8E /* FeedCell.swift in Sources */,
+				9C6A2A1828B8D3FA002B8D8E /* FeedCellViewModel.swift in Sources */,
 				9C51D545287CA5A900D9AD5B /* CustomSecureField.swift in Sources */,
 				9C51D538287C073200D9AD5B /* RegistrationView.swift in Sources */,
 				9C511830288C920000024F57 /* UploadView.swift in Sources */,
 				9C51D54D287F5CBA00D9AD5B /* MainTabView.swift in Sources */,
+				9C6A2A1028B8D2A8002B8D8E /* MainView.swift in Sources */,
 				9C51D536287C071200D9AD5B /* LoginView.swift in Sources */,
 				9C51D543287CA36A00D9AD5B /* CustomTextField.swift in Sources */,
 				9C5118482896EEFF00024F57 /* ImagePicker.swift in Sources */,
 				9C51D54A287F162E00D9AD5B /* AuthViewModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* FeedbuttonApp.swift in Sources */,
 				9C51183E2894EC8A00024F57 /* NewPasswordView.swift in Sources */,
+				9C6A2A1C28B9031A002B8D8E /* DraggableModifier.swift in Sources */,
 				9C51D53A287C074600D9AD5B /* ForgotPasswordView.swift in Sources */,
 				9C51183A288C931900024F57 /* NotificationsView.swift in Sources */,
+				9C6A2A1A28B8D486002B8D8E /* FeedViewModel.swift in Sources */,
 				9C5118422896992500024F57 /* CustomButton.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				9C511838288C928C00024F57 /* ProfileView.swift in Sources */,
@@ -552,6 +592,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9C6A2A0C28B88560002B8D8E /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		9C6A2A1328B8D3B7002B8D8E /* XCRemoteSwiftPackageReference "KingFisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/KingFisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9C6A2A0D28B88560002B8D8E /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C6A2A0C28B88560002B8D8E /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+		9C6A2A1428B8D3B8002B8D8E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C6A2A1328B8D3B7002B8D8E /* XCRemoteSwiftPackageReference "KingFisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

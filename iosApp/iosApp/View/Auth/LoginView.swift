@@ -88,11 +88,10 @@ struct LoginView: View {
                     Button(action: {
                         viewModel.login(withEmail: email, password: password)
                     }, label: {
-                        CustomButton(width: 340, height: 50,
-                                     view: Text(" login ")
-                            .font(.headline)
-                            .foregroundColor(credentialsEmpty ? .gray : .black)
-                        )
+                        CustomButton(title: " login ",
+                                     width: 340, height: 50,
+                                     font: .headline,
+                                     color: credentialsEmpty ? .gray : .black)
                         .padding()
                     })
                     .disabled(credentialsEmpty)

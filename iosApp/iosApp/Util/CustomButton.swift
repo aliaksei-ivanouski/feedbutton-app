@@ -9,13 +9,41 @@
 import SwiftUI
 
 struct CustomButton: View {
-    var width: CGFloat
-    var height: CGFloat
-    var view: Text
+    private var title: String
+    private var systemImage: String = ""
+    private var width: CGFloat
+    private var height: CGFloat
+    private var font: Font
+    private var color: Color
+    
+    init(title: String, width: CGFloat, height: CGFloat, font: Font, color: Color) {
+        self.title = title
+        self.width = width
+        self.height = height
+        self.font = font
+        self.color = color
+    }
+    
+    init(title: String, systemImage: String, width: CGFloat, height: CGFloat, font: Font, color: Color) {
+        self.title = title
+        self.systemImage = systemImage
+        self.width = width
+        self.height = height
+        self.font = font
+        self.color = color
+    }
     
     var body: some View {
         ZStack {
-            view
+            if systemImage.isEmpty {
+                Text(self.title)
+                    .font(font)
+                    .foregroundColor(color)
+            } else {
+                Label(self.title, systemImage: self.systemImage)
+                    .font(font)
+                    .foregroundColor(color)
+            }
         }
         .frame(width: width, height: height)
         .background(
